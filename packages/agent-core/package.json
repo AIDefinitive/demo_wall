@@ -1,0 +1,16 @@
+{
+  "name": "@demo-wall/agent-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test --test-concurrency=1 dist/compose.test.js dist/categorize.test.js dist/parse.test.js"
+  }
+}

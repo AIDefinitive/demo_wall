@@ -1,0 +1,15 @@
+{
+  "description": "Every operational log line includes these keys. OTLP resource attributes carry service.name, service.version, service.namespace, and deployment.environment. trace_id and span_id are on each log line and on the active span when a collector endpoint is set.",
+  "fields": [
+    "timestamp",
+    "severity",
+    "body",
+    "event",
+    "service.name",
+    "service.version",
+    "service.namespace",
+    "deployment.environment",
+    "trace_id",
+    "span_id"
+  ]
+}

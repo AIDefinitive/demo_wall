@@ -1,0 +1,38 @@
+services:
+  poster-agent:
+    build:
+      context: .
+      dockerfile: services/agent/Dockerfile
+    environment:
+      PORT: "4001"
+      DEPLOYMENT_ENVIRONMENT: local
+      SERVICE_VERSION: "0.1.0"
+      STREAM_DELAY_MS: "28"
+      INTERNAL_TOKEN: ${INTERNAL_TOKEN:-}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}
+    ports:
+      - "4001:4001"
+  wall:
+    build:
+      context: .
+      dockerfile: services/wall/Dockerfile
+    environment:
+      PORT: "4000"
+      AGENT_URL: http://poster-agent:4001
+      DATA_DIR: /app/data
+      DEPLOYMENT_ENVIRONMENT: local
+      SERVICE_VERSION: "0.1.0"
+      INTERNAL_TOKEN: ${INTERNAL_TOKEN:-}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS:-}
+    ports:
+      - "4000:4000"
+    depends_on:
+      poster-agent:
+        condition: service_healthy
+    volumes:
+      - wall-data:/app/data
+
+volumes:
+  wall-data:

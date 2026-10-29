@@ -1,0 +1,23 @@
+{
+  "name": "@demo-wall/agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./app": {
+      "types": "./dist/app.d.ts",
+      "import": "./dist/app.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test --test-concurrency=1 dist/app.test.js",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@demo-wall/agent-core": "0.1.0",
+    "@demo-wall/observability": "0.1.0",
+    "@hono/node-server": "2.1.5",
+    "hono": "4.13.14"
+  }
+}

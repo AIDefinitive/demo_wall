@@ -1,0 +1,18 @@
+{
+  "name": "@demo-wall/wall",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.client.json",
+    "test": "node --experimental-sqlite --test --test-concurrency=1 dist/sse.test.js dist/app.test.js",
+    "start": "node --experimental-sqlite dist/server.js"
+  },
+  "dependencies": {
+    "@demo-wall/agent": "0.1.0",
+    "@demo-wall/agent-core": "0.1.0",
+    "@demo-wall/observability": "0.1.0",
+    "@hono/node-server": "2.1.5",
+    "hono": "4.13.14"
+  }
+}
